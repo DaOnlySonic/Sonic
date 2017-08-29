@@ -1,0 +1,21 @@
+name: Nick
+author: DaOnlySonic
+api: 3.0.0-ALPHA7
+version: 1.0.0
+main: Nick\Nick
+
+commands:
+ nick:
+  description: "Nick Command"
+  aliases: [Nick]
+  
+permissions:
+nick:
+default: op
+children:
+nick.set
+description: "Nick set command permission"
+default: op
+nick.see
+description: "Nick see command permission"
+default: op

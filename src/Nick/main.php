@@ -1,6 +1,12 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: iiFlamiinBlaze
+ * Date: 9/27/2017
+ * Time: 5:06 PM
+ */
 
-namespace sonic\main;
+namespace sonic\nick\main;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
@@ -26,49 +32,50 @@ class Main extends PluginBase implements Listener{
         }
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, string $list, array $args) : bool{
-        switch(strtolower($cmd)){
+    public function onCommand(CommandSender $sender, Command $cmd, string $list, array $args) : bool
+    {
+        switch (strtolower($cmd)) {
             case "nick":
-                if(count($args) != 1){
-                    $sender->sendMessage(TextFormat::RED."Usage: /nick <new-name:off>");
+                if (count($args) != 1) {
+                    $sender->sendMessage(TextFormat::RED . "Usage: /nick <new-name:off>");
                     return;
                 }
-            
+
                 $no_underscore = str_replace("_", "", $args[0]);
-                if(!ctype_alnum($no_underscore)){
-                    $sender->sendMessage(TextFormat::RED."Nickname must consist of only letters, numbers and underscores!");
-                    return;
-                }
-            
-                if(strlen($args[0]) > 16){
-                    $sender->sendMessage(TextFormat::RED."Nickname must not be longer than 16 characters!");
+                if (!ctype_alnum($no_underscore)) {
+                    $sender->sendMessage(TextFormat::RED . "Nickname must consist of only letters, numbers and underscores!");
                     return;
                 }
 
-                if(strlen($args[0]) < 3){
-                    $sender->sendMessage(TextFormat::RED."Nickname must be longer than 2 characters!");
+                if (strlen($args[0]) > 16) {
+                    $sender->sendMessage(TextFormat::RED . "Nickname must not be longer than 16 characters!");
                     return;
                 }
 
-                if(strtolower($args[0]) == "off"){
-                    if(!isset($this->nicknames[strtolower($sender->getName())])){
-                        $sender->sendMessage(TextFormat::RED."You do not have a set nickname!");
+                if (strlen($args[0]) < 3) {
+                    $sender->sendMessage(TextFormat::RED . "Nickname must be longer than 2 characters!");
+                    return;
+                }
+
+                if (strtolower($args[0]) == "off") {
+                    if (!isset($this->nicknames[strtolower($sender->getName())])) {
+                        $sender->sendMessage(TextFormat::RED . "You do not have a set nickname!");
                         return;
                     }
 
                     unset($this->nicknames[strtolower($sender->getName())]);
-                    $sender->setDisplayName("~".$sender->getName());
-                    $sender->setNameTag("~".$sender->getName());
-                    $sender->sendMessage(TextFormat::GREEN."Your nickname has been unset!");
+                    $sender->setDisplayName("~" . $sender->getName());
+                    $sender->setNameTag("~" . $sender->getName());
+                    $sender->sendMessage(TextFormat::GREEN . "Your nickname has been unset!");
                     return;
                 }
 
                 $this->nicknames[strtolower($sender->getName())] = $args[0];
                 $sender->setDisplayName($args[0]);
                 $sender->setNameTag($args[0]);
-                $sender->sendMessage(TextFormat::GREEN."Your nickname has been set to " . $args[0] . "!");
-            break;
-       }
+                $sender->sendMessage(TextFormat::GREEN . "Your nickname has been set to " . $args[0] . "!");
+                break;
+        }
+        return true;
     }
-  return true;
 }

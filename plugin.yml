@@ -5,15 +5,10 @@ version: 1.0.2
 main: Nick\Main
 commands:
  nick:
-  description: "Nick Command"
-  aliases: [Nick]
+  description: Gives the sender a Nickname
+  permission: nick
+
 permissions:
-nick:
-default: op
-children:
-nick.set
-description: "Nick set command permission"
-default: op
-nick.see
-description: "Nick see command permission"
-default: op
+ nick:
+  description: Permission to allow setting nicknames
+  default: op

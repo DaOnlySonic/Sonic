@@ -9,7 +9,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\plugin\PluginBase;
 
-*/
+/*
 * $sender->sendMessage($this->prefix.TF::DARK_GRAY . "You are now" . TF::RED . "nicked!");
 * Reminder for later.
 /*

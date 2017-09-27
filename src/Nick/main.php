@@ -6,7 +6,7 @@
  * Time: 5:06 PM
  */
 
-namespace sonic\nick\main;
+namespace nick\main;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;

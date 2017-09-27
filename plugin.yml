@@ -2,7 +2,7 @@ name: Nick
 author: DaOnlySonic
 api: [3.0.0-ALPHA7, 3.0.0-ALPHA8]
 version: 1.0.1
-main: Sonic\Nick
+main: Sonic\Nick\Main
 commands:
  nick:
   description: "Nick Command"
